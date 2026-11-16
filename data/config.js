@@ -130,7 +130,7 @@ window.CONFIG = {
 
       pack: {
         front: "img/fob3/fob3-front.jpg",
-        back:  null
+        back:  "img/fob3/fob3-plant4.jpg",
       },
       cover: "img/fob3/fob3-front.jpg",   // Bild auf der Karte
 
@@ -138,7 +138,7 @@ window.CONFIG = {
         { src: "img/fob3/fob3-plant1.jpg", caption: "Fruit of the Bloom #3 in der Blüte" },
         { src: "img/fob3/fob3-plant2.jpg", caption: "Fruit of the Bloom #3 Tag 65" },
         { src: "img/fob3/fob3-plant3.jpg", caption: "Fruit of the Bloom #3 Tag 80" },
-        { src: "img/fob3/fob3-plant4.jpg", caption: "Fruit of the Bloom #3 Tag 90" }
+        { src: "img/fob3/fob3-plant4.jpg", caption: "Finale Blüten getrockent und getrimmt" }
       ]
     },
     {
@@ -179,7 +179,7 @@ window.CONFIG = {
 
       pack: {
         front: "img/hbf/hbf-front.jpg",
-        back:  null
+        back:  "img/hbf/hbf-plant1.jpg",
       },
       cover: "img/hbf/hbf-front.jpg",   // Bild auf der Karte
 
@@ -233,9 +233,7 @@ window.CONFIG = {
       cover: "img/zii/zii-front.jpg",   // Bild auf der Karte
 
       gallery: [
-        { src: "img/zii/zii-plant1.jpg", caption: "Zombii Tag 23" },
-        { src: "img/zii/zii-plant2.jpg", caption: "..." },
- 
+        null
       ]
     }
   ]

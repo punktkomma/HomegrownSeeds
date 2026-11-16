@@ -10,6 +10,8 @@ Statische Seite, kein Build, kein Server nötig. `index.html` öffnen oder den O
 
 Mit `filterTags` (z. B. `["Fruchtig", "Haze"]`) bestimmst du die Filter-Chips der Übersicht.
 Sie werden automatisch aus den Tags aller Sorten erzeugt.
+Die beiden Bild-Icons daneben schalten die Karten zwischen Cover und erstem Galerie-Bild um.
+Mit `cardPlantImage` kannst du pro Sorte ein anderes Pflanzenbild für diese Ansicht festlegen.
 
 Auf der Unterseite einer Sorte kannst du zusätzliche Angaben unter `cultivationInfo` eintragen.
 Jeder Eintrag besteht aus einer Beschriftung und einem Wert; die Liste kann beliebig erweitert

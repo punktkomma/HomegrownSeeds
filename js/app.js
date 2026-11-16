@@ -78,18 +78,25 @@
     aroma: '<path d="M8 20c-2-2-2-4 0-6s2-4 0-6m8 12c-2-2-2-4 0-6s2-4 0-6M12 4v2"/>',
     effect: '<path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/>',
     sparkles: '<path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/>',
+    cover: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
     leaf: '<path d="M20 4c-9 0-15 4-15 11a5 5 0 0 0 5 5c7 0 11-6 10-16Z"/><path d="M5 20c3-4 6-7 11-10"/>'
   };
   const icon = name => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.leaf}</svg>`;
 
   function home() {
     const filterTags = [...new Set(C.strains.flatMap(s => list(s.filterTags)))];
-    const cards = C.strains.map((s, i) => `
+    const cards = C.strains.map((s, i) => {
+      const coverImage = s.cover || s.pack?.front || '';
+      const plantImage = s.cardPlantImage || list(s.gallery)[0]?.src || '';
+      const coverAlt = `Samenpackung ${s.name}`;
+      const plantAlt = `${s.name} als Pflanze`;
+      return `
       <a class="card reveal strain-card" data-filter-tags="${esc(list(s.filterTags).map(tag => tag.toLocaleLowerCase('de')).join('|'))}" style="--d:${i*90}ms;--c-bg:${esc(s.bg || '')}" href="#/strain/${esc(s.id)}">
         ${s.status ? `<span class="badge">${esc(s.status)}</span>` : ''}
-        <img src="${esc(s.cover || s.pack?.front)}" alt="Samenpackung ${esc(s.name)}" loading="lazy">
+        <img class="strain-image" src="${esc(coverImage)}" data-cover="${esc(coverImage)}" data-plant="${esc(plantImage)}" data-cover-alt="${esc(coverAlt)}" data-plant-alt="${esc(plantAlt)}" alt="${esc(coverAlt)}" loading="lazy">
         <div class="meta"><h3>${esc(s.name)}</h3><div class="gen">${list(s.genetics).map(esc).join(' × ')}</div></div>
-      </a>`).join('');
+      </a>`;
+    }).join('');
     const soon = S.showComingSoon ? `<div class="card soon reveal">${esc(S.comingSoonText || 'Bald mehr')}</div>` : '';
     const ticker = Array(8).fill('No Sales ✦ Private Stash ✦ Homegrown').join(' ✦ ');
     app.innerHTML = `
@@ -100,9 +107,15 @@
       <div class="marquee"><span>${ticker} ✦ ${ticker}</span></div>
       <section class="section" id="strains"><h2>Alle Sorten</h2>
         <div class="strain-tools">
-          <div class="filter-options" role="group" aria-label="Sorten nach Tags filtern">
-            <button class="filter-chip is-active" type="button" data-filter="" aria-pressed="true">Alle</button>
-            ${filterTags.map(tag => `<button class="filter-chip" type="button" data-filter="${esc(tag.toLocaleLowerCase('de'))}" aria-pressed="false">${esc(tag)}</button>`).join('')}
+          <div class="strain-controls">
+            <div class="filter-options" role="group" aria-label="Sorten nach Tags filtern">
+              <button class="filter-chip is-active" type="button" data-filter="" aria-pressed="true">Alle</button>
+              ${filterTags.map(tag => `<button class="filter-chip" type="button" data-filter="${esc(tag.toLocaleLowerCase('de'))}" aria-pressed="false">${esc(tag)}</button>`).join('')}
+            </div>
+            <div class="image-options" role="group" aria-label="Kartenbild auswählen">
+              <button class="image-chip is-active" type="button" data-image-view="cover" aria-label="Cover anzeigen" title="Cover anzeigen" aria-pressed="true">${icon('cover')}</button>
+              <button class="image-chip" type="button" data-image-view="plant" aria-label="Pflanzenbilder anzeigen" title="Pflanzenbilder anzeigen" aria-pressed="false">${icon('leaf')}</button>
+            </div>
           </div>
           <p class="filter-count" id="filterCount" aria-live="polite"></p>
         </div>
@@ -113,6 +126,7 @@
     document.documentElement.style.setProperty('--bg', 'var(--yellow)');
 
     const filterButtons = [...app.querySelectorAll('.filter-chip')];
+    const imageButtons = [...app.querySelectorAll('.image-chip')];
     const strainCards = [...app.querySelectorAll('.strain-card')];
     const count = document.getElementById('filterCount');
     const noStrains = document.getElementById('noStrains');
@@ -144,6 +158,25 @@
         item.setAttribute('aria-pressed', String(selected));
       });
       updateStrains();
+    }));
+    imageButtons.forEach(button => button.addEventListener('click', () => {
+      const view = button.dataset.imageView;
+      imageButtons.forEach(item => {
+        const selected = item === button;
+        item.classList.toggle('is-active', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      strainCards.forEach(card => {
+        const image = card.querySelector('.strain-image');
+        const usePlant = view === 'plant' && image.dataset.plant;
+        const source = usePlant || image.dataset.cover;
+        if (image.getAttribute('src') === source) return;
+        image.classList.remove('image-switch');
+        void image.offsetWidth;
+        image.setAttribute('src', source);
+        image.alt = usePlant ? image.dataset.plantAlt : image.dataset.coverAlt;
+        image.classList.add('image-switch');
+      });
     }));
     updateStrains();
   }

@@ -51,7 +51,7 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Fruchtig", "Zitrus", "Haze"],
+      filterTags: ["Fruchtig", "Sour", "Limette", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#e8531a",
@@ -103,7 +103,7 @@ window.CONFIG = {
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#1ae824",
-      bg: "#33c9e0",
+      bg: "#d354b9",
 
       description: "Fruit of the Bloom #3 ist eine Kreuzung aus Radical Juice Auto (Fanta Pheno) und Granite Haze. Fruchtiges Aroma, richtung Fanta und Capri-Sonne. Ausufernder Wuchs, dichte Blüten, sehr harzig.",
 
@@ -186,6 +186,54 @@ window.CONFIG = {
       gallery: [
         { src: "img/hbf/hbf-plant1.jpg", caption: "Hidden Berry Freak Tag 23" },
         { src: "img/hbf/hbf-plant2.jpg", caption: "..." },
+ 
+      ]
+    },
+    {
+      id: "zii",
+      name: "Zombii",
+      genetics: ["Zombie Kush Auto", "Granite Haze"],
+      type: "Feminisiert & Autoflower",
+      born: "Jun 2026",
+      packSize: "Samen",
+      status: "Aktuell im Test",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Fruchtig", "Beere", "Haze", "Im Test"],
+
+      /* Farben der Detailseite (aus dem Cover) */
+      accent: "rgb(224, 51, 51)",
+      bg: "#79b779",
+
+      description: "Zombii ist eine Kreuzung aus Zombie Kush Auto und Granite Haze. Keine Freaky-Leafs, da Granite Haze keine Mutation. Berry Gelato-Noten von der Mutter, Haze-Charakter von Granite Haze. ",
+
+      /* Eckdaten – null = ausblenden. Aktuell PROGNOSE aus den Eltern, bitte durch echte Werte ersetzen
+         und dann forecast auf false stellen. */
+      forecast: true,
+      forecastNote: "Prognose aus der Genetik (Zombie Kush Auto × Granite Haze). Echte Messwerte folgen nach den Testläufen.",
+      stats: {
+        totalDays: "80–90 Tage",
+        generation: "F1",
+        height: "60–140 cm",
+        yield: "100–120g / Pflanze",
+      },
+
+      aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
+      effect:  ["Hybrid", "Talking", "Energetisch"],
+      parents: [
+        { role: "Mutter", name: "Zombie Kush Auto", breeder: "Ripper Seeds" },
+        { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
+      ],
+      notes: "Die Sorte ist eine Kreuzung aus Zombie Kush Auto (Zombie Kush Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
+      cultivationInfo: [],
+
+      pack: {
+        front: "img/zii/zii-front.jpg",
+        back:  null
+      },
+      cover: "img/zii/zii-front.jpg",   // Bild auf der Karte
+
+      gallery: [
+        { src: "img/zii/zii-plant1.jpg", caption: "Zombii Tag 23" },
+        { src: "img/zii/zii-plant2.jpg", caption: "..." },
  
       ]
     }

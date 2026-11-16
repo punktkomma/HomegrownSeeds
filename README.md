@@ -8,6 +8,32 @@ Statische Seite, kein Build, kein Server nötig. `index.html` öffnen oder den O
 2. In `data/config.js` den Block der Sorte unter `strains` kopieren und anpassen.
 3. Leere Felder (`null` / `[]`) werden automatisch ausgeblendet.
 
+Mit `filterTags` (z. B. `["Fruchtig", "Haze"]`) bestimmst du die Filter-Chips der Übersicht.
+Sie werden automatisch aus den Tags aller Sorten erzeugt.
+
+Auf der Unterseite einer Sorte kannst du zusätzliche Angaben unter `cultivationInfo` eintragen.
+Jeder Eintrag besteht aus einer Beschriftung und einem Wert; die Liste kann beliebig erweitert
+werden. Zum Beispiel:
+
+```js
+cultivationInfo: [
+  { label: "Veg → Blüte", value: "z. B. ca. 3–4 Wochen ab Keimung" },
+  { label: "Düngerempfindlichkeit", value: "z. B. eher empfindlich" }
+]
+```
+
+Die Beispielwerte sind Platzhalter und sollten pro Sorte angepasst werden. Ohne Einträge wird der
+Bereich „Anbauinfos“ auf der Unterseite nicht angezeigt.
+
+Die Eltern trägst du als getrennte Objekte ein. `breeder` und `fGen` (z. B. `F7`) sind optional:
+
+```js
+parents: [
+  { role: "Mutter", name: "Sortenname", fGen: "F7", breeder: "Züchter" },
+  { role: "Vater", name: "Sortenname", breeder: "Züchter" }
+]
+```
+
 Farben, Texte, Kontaktlink und der „Bald mehr“-Platzhalter stehen oben in `data/config.js`.
 Die verwendeten Schriftarten Anton und Barlow Condensed liegen als WOFF2-Dateien unter `fonts/`
 und werden lokal eingebunden. Die SIL-OFL-Lizenzen liegen jeweils bei den Fontdateien.

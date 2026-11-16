@@ -69,8 +69,9 @@
   ];
 
   function home() {
+    const filterTags = [...new Set(C.strains.flatMap(s => list(s.filterTags)))];
     const cards = C.strains.map((s, i) => `
-      <a class="card reveal" style="--d:${i*90}ms;--c-bg:${esc(s.bg || '')}" href="#/strain/${esc(s.id)}">
+      <a class="card reveal strain-card" data-filter-tags="${esc(list(s.filterTags).map(tag => tag.toLocaleLowerCase('de')).join('|'))}" style="--d:${i*90}ms;--c-bg:${esc(s.bg || '')}" href="#/strain/${esc(s.id)}">
         ${s.status ? `<span class="badge">${esc(s.status)}</span>` : ''}
         <img src="${esc(s.cover || s.pack?.front)}" alt="Samenpackung ${esc(s.name)}" loading="lazy">
         <div class="meta"><h3>${esc(s.name)}</h3><div class="gen">${list(s.genetics).map(esc).join(' × ')}</div></div>
@@ -83,9 +84,54 @@
         <img class="logo-big" src="${esc(S.logo)}" alt="${esc(S.name)}">
       </section>
       <div class="marquee"><span>${ticker} ✦ ${ticker}</span></div>
-      <section class="section" id="strains"><h2>Alle Sorten</h2><div class="grid">${cards}${soon}</div></section>
+      <section class="section" id="strains"><h2>Alle Sorten</h2>
+        <div class="strain-tools">
+          <div class="filter-options" role="group" aria-label="Sorten nach Tags filtern">
+            <button class="filter-chip is-active" type="button" data-filter="" aria-pressed="true">Alle</button>
+            ${filterTags.map(tag => `<button class="filter-chip" type="button" data-filter="${esc(tag.toLocaleLowerCase('de'))}" aria-pressed="false">${esc(tag)}</button>`).join('')}
+          </div>
+          <p class="filter-count" id="filterCount" aria-live="polite"></p>
+        </div>
+        <div class="grid" id="strainGrid">${cards}${soon}</div>
+        <p class="empty-state" id="noStrains" hidden>Keine Sorten in diesem Filter. Wähle einen anderen Filter.</p>
+      </section>
       ${S.about ? `<section class="about" id="about"><div class="section"><h2>Zu Robin's Homegrown</h2><p>${esc(S.about)}</p></div></section>` : ''}`;
     document.documentElement.style.setProperty('--bg', 'var(--yellow)');
+
+    const filterButtons = [...app.querySelectorAll('.filter-chip')];
+    const strainCards = [...app.querySelectorAll('.strain-card')];
+    const count = document.getElementById('filterCount');
+    const noStrains = document.getElementById('noStrains');
+    const comingSoon = app.querySelector('.card.soon');
+    let activeFilter = '';
+
+    const updateStrains = () => {
+      let visible = 0;
+      strainCards.forEach(card => {
+        const matches = !activeFilter || card.dataset.filterTags.split('|').includes(activeFilter);
+        if (matches && card.hidden) {
+          card.classList.remove('filter-enter');
+          void card.offsetWidth;
+          card.classList.add('filter-enter');
+        }
+        card.hidden = !matches;
+        if (matches) visible++;
+      });
+      if (comingSoon) comingSoon.hidden = Boolean(activeFilter);
+      noStrains.hidden = visible > 0;
+      count.textContent = `${visible} ${visible === 1 ? 'Sorte' : 'Sorten'}`;
+    };
+
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      filterButtons.forEach(item => {
+        const selected = item === button;
+        item.classList.toggle('is-active', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      updateStrains();
+    }));
+    updateStrains();
   }
 
   function detail(id) {
@@ -99,10 +145,32 @@
       .map((t, i) => `<span class="tag ${i === 0 ? 'hot' : ''}">${esc(t)}</span>`).join('');
     const stats = STAT_LABELS.filter(([k]) => s.stats?.[k])
       .map(([k, l], i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 300}ms"><small>${l}</small><strong>${esc(s.stats[k])}</strong></div>`).join('');
+    const cultivationInfo = list(s.cultivationInfo).filter(info => info?.label && info?.value)
+      .map((info, i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 120}ms"><small>${esc(info.label)}</small><strong>${esc(info.value)}</strong></div>`).join('');
     const stamp = s.forecast ? `<div class="forecast reveal"><span class="stamp">Prognose</span><p>${esc(s.forecastNote || 'Werte sind geschätzt.')}</p></div>` : '';
+    const parents = list(s.parents).map((parent, i) => {
+      if (typeof parent === 'string') {
+        return `<article class="parent-card reveal"><span class="parent-role">Elternteil ${i + 1}</span><strong>${esc(parent)}</strong></article>`;
+      }
+      if (!parent?.name) return '';
+      return `<article class="parent-card reveal">
+        <div class="parent-topline">
+          <span class="parent-role">${esc(parent.role || `Elternteil ${i + 1}`)}</span>
+          ${parent.fGen ? `<span class="parent-generation">${esc(parent.fGen)}</span>` : ''}
+        </div>
+        <strong>${esc(parent.name)}</strong>
+        ${parent.breeder ? `<span class="parent-breeder">Züchter: ${esc(parent.breeder)}</span>` : ''}
+      </article>`;
+    }).join('');
+    const parentsSection = parents
+      ? `<section class="parents"><h3>Eltern</h3><div class="parent-grid">${parents}</div></section>` : '';
+    const notesSection = s.notes
+      ? `<section class="notes-block"><h3>Hinweise</h3><div class="notes reveal"><p>${esc(s.notes)}</p></div></section>` : '';
+    const parentNotes = parentsSection || notesSection
+      ? `<div class="parent-notes">${parentsSection}${notesSection}</div>` : '';
     const chips = (title, arr) => list(arr).length
       ? `<div class="reveal"><h3>${title}</h3><div class="tags">${arr.map(a => `<span class="tag">${esc(a)}</span>`).join('')}</div></div>` : '';
-    const lists = [chips('Aroma', s.aroma), chips('Wirkung', s.effect), chips('Eltern', s.parents)].join('');
+    const lists = [chips('Aroma', s.aroma), chips('Wirkung', s.effect)].join('');
     const gal = list(s.gallery).map(g =>
       `<figure class="reveal" data-src="${esc(g.src)}" data-cap="${esc(g.caption || '')}"><img src="${esc(g.src)}" alt="${esc(g.caption || s.name)}" loading="lazy">${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}</figure>`).join('');
     const pack = s.pack?.back
@@ -127,8 +195,9 @@
           </div>
         </div>
         ${stats ? `${stamp}<div class="stats">${stats}</div>` : ''}
+        ${cultivationInfo ? `<section class="grow-info"><h2>Anbauinfos</h2><div class="stats">${cultivationInfo}</div></section>` : ''}
         ${lists.trim() ? `<div class="lists">${lists}</div>` : ''}
-        ${s.notes ? `<section class="notes reveal"><h3>Hinweise</h3><p>${esc(s.notes)}</p></section>` : ''}
+        ${parentNotes}
         ${gal ? `<div class="gal"><h2>Galerie</h2><div class="gal-grid">${gal}</div></div>` : ''}
       </div></section>`;
 

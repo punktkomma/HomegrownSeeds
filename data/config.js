@@ -51,6 +51,7 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Fruchtig", "Zitrus", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#e8531a",
@@ -71,8 +72,13 @@ window.CONFIG = {
 
       aroma:   ["Sour Lime", "Zitrus", "Säuerlich", "Leicht erdig"],
       effect:  ["Klar", "Kreativ", "Energetisch"],
-      parents: ["Mom: Sour Stomper F7 (Mephisto Genetics)", "Dad: Granite Haze F7 (Speedrun Seeds)"],
+      parents: [
+        { role: "Mutter", name: "Sour Stomper", fGen: "F7", breeder: "Mephisto Genetics" },
+        { role: "Vater", name: "Granite Haze", fGen: "F7", breeder: "Speedrun Seeds" }
+      ],
       notes: "Haze-Anteil heißt: etwas längere Blüte und viel Streckung zu Beginn. Früh LST oder Topping, genug Platz nach oben einplanen. Die Sour-Seite bringt die frische, scharfe Limetten-Note. Etwas Empfindlich auf Stickstoff.",
+      cultivationInfo: [{ label: "Veg → Blüte", value: "z. B. ca. 3–4 Wochen ab Keimung" },
+  { label: "Düngerempfindlichkeit", value: "z. B. eher empfindlich" } ],
 
       pack: {
         front: "img/tulaberry/pack-front.jpg",
@@ -93,6 +99,7 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Fruchtig", "Zitrus", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#1ae824",
@@ -114,8 +121,12 @@ window.CONFIG = {
 
       aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
       effect:  ["Hybrid", "Talking", "Energetisch"],
-      parents: ["Mom: Radical Juice Auto (Ripper Seeds) *Fanta Pheno*", "Dad: Granite Haze (Speedrun Seeds)"],
+      parents: [
+        { role: "Mutter", name: "Radical Juice Auto (Fanta-Phäno)", breeder: "Ripper Seeds" },
+        { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
+      ],
       notes: "Die Sorte ist eine Kreuzung aus Radical Juice Auto (Fanta Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
+      cultivationInfo: [],
 
       pack: {
         front: "img/fob3/fob3-front.jpg",
@@ -138,6 +149,7 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Aktuell im Test",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Fruchtig", "Beere", "Haze", "Im Test"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "rgb(63, 224, 51)",
@@ -158,8 +170,12 @@ window.CONFIG = {
 
       aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
       effect:  ["Hybrid", "Talking", "Energetisch"],
-      parents: ["Mom: Frosty's Auto Freak (Khalifa Genetics)", "Dad: Granite Haze (Speedrun Seeds)"],
+      parents: [
+        { role: "Mutter", name: "Frosty's Auto Freak", breeder: "Khalifa Genetics" },
+        { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
+      ],
       notes: "Die Sorte ist eine Kreuzung aus Frosty's Auto Freak (Fanta Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
+      cultivationInfo: [],
 
       pack: {
         front: "img/hbf/hbf-front.jpg",

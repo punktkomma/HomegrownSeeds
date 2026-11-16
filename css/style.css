@@ -157,7 +157,7 @@ main{flex:1}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-4);margin-top:var(--space-7)}
 .stat{display:flex;flex-direction:column;justify-content:space-between;min-height:7rem;background:var(--paper);border:var(--bd);box-shadow:4px 4px 0 var(--ink);padding:var(--space-3) var(--space-4)}
 .stat-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
-.stat small{display:block;font:700 .9rem var(--body);text-transform:uppercase;letter-spacing:.1em;opacity:.7}
+.stat small{display:block;min-width:0;font:700 .9rem var(--body);text-transform:uppercase;letter-spacing:.1em;opacity:.7;overflow-wrap:anywhere}
 .stat-icon{display:grid;place-items:center;flex:none;width:2.15rem;height:2.15rem;border:1px solid currentColor;border-radius:50%;background:rgba(251,247,233,.7);color:var(--ink);transform:rotate(5deg)}
 .icon{display:block;width:1.25rem;height:1.25rem}
 .stat strong{font:clamp(1.25rem,3vw,1.7rem)/1.1 var(--display);color:var(--accent);overflow-wrap:anywhere}
@@ -191,6 +191,19 @@ main{flex:1}
 .gal-grid figure{break-inside:avoid;margin-bottom:1.25rem;border:var(--bd);box-shadow:var(--shadow);background:var(--paper);cursor:zoom-in}
 .gal-grid img{width:100%}
 .gal-grid figcaption{padding:var(--space-2) var(--space-3);font:600 1.05rem var(--body);border-top:var(--bd)}
+.lineage{margin-top:var(--space-8)}
+.lineage h2{display:inline-flex;align-items:center;gap:var(--space-2);font:2.2rem/1.05 var(--display);letter-spacing:.015em;text-transform:uppercase;margin-bottom:var(--space-4)}
+.lineage h2 .icon{width:1.5rem;height:1.5rem;color:var(--accent)}
+.lineage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-5)}
+.lineage-branch{padding:var(--space-4);background:var(--paper);border:var(--bd);box-shadow:4px 4px 0 var(--ink);outline:4px solid #fff;outline-offset:-2px}
+.lineage-branch-head{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-2)}
+.lineage-role{font:700 .85rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lineage-fgen{padding:0 var(--space-2);border:1px solid var(--ink);font:700 .75rem var(--body)}
+.lineage-root{display:block;font:1.45rem/1.1 var(--display);text-transform:uppercase;overflow-wrap:anywhere}
+.lineage-ancestors{display:grid;gap:var(--space-2);margin:var(--space-3) 0 0 var(--space-2);padding:0 0 0 var(--space-4);border-left:2px solid var(--accent);list-style:none}
+.lineage-ancestors li{position:relative;display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:#fff;border:1px solid var(--ink);box-shadow:2px 2px 0 var(--ink);font:600 1rem/1.2 var(--body)}
+.lineage-ancestors li::before{content:"";position:absolute;left:calc(-1 * var(--space-4));top:50%;width:var(--space-3);border-top:1px solid var(--accent)}
+.lineage-ancestors small{flex:none;padding:0 var(--space-1);border:1px solid var(--ink);font:700 .75rem var(--body)}
 
 #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-4);cursor:zoom-out}
 #lightbox[hidden]{display:none}
@@ -246,8 +259,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;op
 .card.soon{outline:none}
 
 /* Titel mit Marker-Strich */
-.section h2,.gal h2,.grow-info h2{display:inline-block;position:relative;z-index:0}
-.section h2::after,.gal h2::after,.grow-info h2::after{content:"";position:absolute;left:-.2em;right:-.2em;bottom:.05em;height:.45em;background:var(--paper);z-index:-1;transform:skew(-8deg) scaleX(0);transform-origin:left;animation:mark .7s .3s cubic-bezier(.3,.8,.3,1) forwards}
+.section h2,.gal h2,.grow-info h2,.lineage h2{display:inline-block;position:relative;z-index:0}
+.section h2::after,.gal h2::after,.grow-info h2::after,.lineage h2::after{content:"";position:absolute;left:-.2em;right:-.2em;bottom:.05em;height:.45em;background:var(--paper);z-index:-1;transform:skew(-8deg) scaleX(0);transform-origin:left;animation:mark .7s .3s cubic-bezier(.3,.8,.3,1) forwards}
+.lineage h2{display:inline-flex}
 .about h2::after{background:var(--orange)}
 @keyframes mark{to{transform:skew(-8deg) scaleX(1)}}
 

@@ -223,6 +223,26 @@
     const lists = [chips('Aroma', s.aroma, 'aroma'), chips('Wirkung', s.effect, 'effect')].join('');
     const gal = list(s.gallery).map(g =>
       `<figure class="reveal" data-src="${esc(g.src)}" data-cap="${esc(g.caption || '')}"><img src="${esc(g.src)}" alt="${esc(g.caption || s.name)}" loading="lazy">${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}</figure>`).join('');
+    const lineageBranches = list(s.parents).map(parent => {
+      if (!parent || typeof parent !== 'object' || !parent.name) return '';
+      const ancestors = list(parent.lineage).map(item => {
+        const name = typeof item === 'string' ? item : item?.name;
+        if (!name) return '';
+        const fGen = typeof item === 'string' ? '' : item.fGen;
+        return `<li><span>${esc(name)}</span>${fGen ? `<small>${esc(fGen)}</small>` : ''}</li>`;
+      }).join('');
+      if (!ancestors) return '';
+      return `<article class="lineage-branch reveal">
+        <div class="lineage-branch-head">
+          <span class="lineage-role">${esc(parent.role || 'Elternlinie')}</span>
+          ${parent.fGen ? `<span class="lineage-fgen">${esc(parent.fGen)}</span>` : ''}
+        </div>
+        <strong class="lineage-root">${esc(parent.name)}</strong>
+        <ul class="lineage-ancestors">${ancestors}</ul>
+      </article>`;
+    }).join('');
+    const lineageSection = lineageBranches
+      ? `<section class="lineage"><h2><span>Lineage</span>${icon('generation')}</h2><div class="lineage-grid">${lineageBranches}</div></section>` : '';
     const pack = s.pack?.back
       ? `<button class="flip" id="flip" aria-label="Packung umdrehen">
           <div class="flip-in">
@@ -249,6 +269,7 @@
         ${lists.trim() ? `<div class="lists">${lists}</div>` : ''}
         ${parentNotes}
         ${gal ? `<div class="gal"><h2>Galerie</h2><div class="gal-grid">${gal}</div></div>` : ''}
+        ${lineageSection}
       </div></section>`;
 
     const flip = document.getElementById('flip');

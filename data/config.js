@@ -54,8 +54,8 @@ window.CONFIG = {
       filterTags: ["Fruchtig", "Sour", "Limette", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
-      accent: "#e8531a",
-      bg: "#2d56a5",
+      accent: "#d58626",
+      bg: "#1d8ee4",
 
       description: "Tulaberry ist eine Kreuzung aus einem wunderschönen Sour Stomper Phänotyp mit extrem fotoperiodischem Look und einer Granite Haze F7. Die Granite Haze bringt die ausufernde Struktur und den Haze-Charakter. Die Sour Stomper-Seite die frische Limetten-Note.",
 
@@ -73,8 +73,14 @@ window.CONFIG = {
       aroma:   ["Sour Lime", "Zitrus", "Säuerlich", "Leicht erdig"],
       effect:  ["Klar", "Kreativ", "Energetisch"],
       parents: [
-        { role: "Mutter", name: "Sour Stomper", fGen: "F7", breeder: "Mephisto Genetics" },
-        { role: "Vater", name: "Granite Haze", fGen: "F7", breeder: "Speedrun Seeds" }
+        { role: "Mutter", name: "Sour Stomper", fGen: "F7", breeder: "Mephisto Genetics", lineage: [
+      { name: "GrapeStomper OG [Gage Green Genetics]" },
+      { name: "Sour Crack", fGen: "F5" }
+    ] },
+        { role: "Vater", name: "Granite Haze", fGen: "F7", breeder: "Speedrun Seeds", lineage: [
+      { name: "Bear’s Breath " },
+      { name: "Hubba Bubba Smelloscope x No-name Haze" }
+    ] }
       ],
       notes: "Haze-Anteil heißt: etwas längere Blüte und viel Streckung zu Beginn. Früh LST oder Topping, genug Platz nach oben einplanen. Die Sour-Seite bringt die frische, scharfe Limetten-Note. Etwas Empfindlich auf Stickstoff.",
       cultivationInfo: [{ label: "Veg → Blüte", value: "z. B. ca. 3–4 Wochen ab Keimung" },
@@ -122,8 +128,11 @@ window.CONFIG = {
       aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
       effect:  ["Hybrid", "Talking", "Energetisch"],
       parents: [
-        { role: "Mutter", name: "Radical Juice Auto (Fanta-Phäno)", breeder: "Ripper Seeds" },
-        { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
+        { role: "Mutter", name: "Radical Juice Auto (Fanta-Phäno)", breeder: "Ripper Seeds", lineage: [] },
+        { role: "Vater", name: "Granite Haze", fGen: "F7", breeder: "Speedrun Seeds", lineage: [
+      { name: "Bear’s Breath " },
+      { name: "Hubba Bubba Smelloscope x No-name Haze" }
+    ] }
       ],
       notes: "Die Sorte ist eine Kreuzung aus Radical Juice Auto (Fanta Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
       cultivationInfo: [],
@@ -171,8 +180,11 @@ window.CONFIG = {
       aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
       effect:  ["Hybrid", "Talking", "Energetisch"],
       parents: [
-        { role: "Mutter", name: "Frosty's Auto Freak", breeder: "Khalifa Genetics" },
-        { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
+        { role: "Mutter", name: "Frosty's Auto Freak", breeder: "Khalifa Genetics", lineage: [] },
+       { role: "Vater", name: "Granite Haze", fGen: "F7", breeder: "Speedrun Seeds", lineage: [
+      { name: "Bear’s Breath " },
+      { name: "Hubba Bubba Smelloscope x No-name Haze" }
+    ] }
       ],
       notes: "Die Sorte ist eine Kreuzung aus Frosty's Auto Freak (Fanta Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
       cultivationInfo: [],
@@ -220,11 +232,14 @@ window.CONFIG = {
       aroma:   ["Haze", "Zitrus", "Lavendel", "Kush"],
       effect:  ["Hybrid", "Nice", "Energetisch"],
       parents: [
-        { role: "Mutter", name: "Zombie Kush Auto", breeder: "Ripper Seeds" },
-        { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
+        { role: "Mutter", name: "Zombie Kush Auto", breeder: "Ripper Seeds", lineage: [] },
+      { role: "Vater", name: "Granite Haze", fGen: "F7", breeder: "Speedrun Seeds", lineage: [
+      { name: "Bear’s Breath " },
+      { name: "Hubba Bubba Smelloscope x No-name Haze" }
+    ] }
       ],
       notes: "Die Sorte ist eine Kreuzung aus Zombie Kush Auto (Zombie Kush Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Blüht erst spät, um Tag 40–45. Verträgt toppen und LST gut.",
-      cultivationInfo: [],
+      cultivationInfo: [{ label: "Veg → Blüte", value: "Später Blütestart. Tag 40-45" }, ],
 
       pack: {
         front: "img/zii/zii-front.jpg",

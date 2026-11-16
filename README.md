@@ -38,14 +38,26 @@ forecastStamp: { label: "Genetik-Prognose", icon: "sparkles", tone: "orange" }
 `green`, `pink` oder `ink` sein. Ohne Angaben verwendet der Stempel „Prognose“ mit Sparkles-Icon
 und Orangeton.
 
-Die Eltern trägst du als getrennte Objekte ein. `breeder` und `fGen` (z. B. `F7`) sind optional:
+Die Eltern trägst du als getrennte Objekte ein. `breeder`, `fGen` (z. B. `F7`) und `lineage` sind optional.
+Mit `lineage` kannst du die Genetik dieses Elternteils weiter aufschlüsseln:
 
 ```js
 parents: [
-  { role: "Mutter", name: "Sortenname", fGen: "F7", breeder: "Züchter" },
+  {
+    role: "Mutter",
+    name: "Sortenname",
+    fGen: "F7",
+    breeder: "Züchter",
+    lineage: [
+      { name: "Genetik 1", fGen: "F5" },
+      { name: "Genetik 2" }
+    ]
+  },
   { role: "Vater", name: "Sortenname", breeder: "Züchter" }
 ]
 ```
+
+Der Lineage-Abschnitt erscheint nach der Galerie, sobald mindestens ein Elternteil Lineage-Einträge hat.
 
 Farben, Texte, Kontaktlink und der „Bald mehr“-Platzhalter stehen oben in `data/config.js`.
 Die verwendeten Schriftarten Anton und Barlow Condensed liegen als WOFF2-Dateien unter `fonts/`

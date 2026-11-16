@@ -68,6 +68,20 @@
     ['yield', 'Ertrag'], ['thc', 'THC'], ['cbd', 'CBD']
   ];
 
+  const ICON_PATHS = {
+    totalDays: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/>',
+    generation: '<path d="M7 3c7 3 3 15 10 18M17 3c-7 3-3 15-10 18M8 7h8M7 12h10M8 17h8"/>',
+    height: '<path d="M12 20V4m0 0-5 5m5-5 5 5M12 20l5-5m-5 5-5-5"/>',
+    yield: '<path d="M12 21v-8m0 0c-4 0-7-2.5-7-6 4.5 0 7 2.5 7 6Zm0-3c0-4 2.5-7 7-7 0 4.5-2.5 7-7 7Z"/>',
+    thc: '<path d="m12 3 7 4v8l-7 5-7-5V7l7-4Z"/><circle cx="12" cy="11" r="2"/>',
+    cbd: '<path d="M12 21c-4-4-6-8-4-12 1-2 3-4 4-6 1 2 3 4 4 6 2 4 0 8-4 12Z"/><path d="M12 20v-8m0 3 3-3"/>',
+    aroma: '<path d="M8 20c-2-2-2-4 0-6s2-4 0-6m8 12c-2-2-2-4 0-6s2-4 0-6M12 4v2"/>',
+    effect: '<path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/>',
+    sparkles: '<path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/>',
+    leaf: '<path d="M20 4c-9 0-15 4-15 11a5 5 0 0 0 5 5c7 0 11-6 10-16Z"/><path d="M5 20c3-4 6-7 11-10"/>'
+  };
+  const icon = name => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.leaf}</svg>`;
+
   function home() {
     const filterTags = [...new Set(C.strains.flatMap(s => list(s.filterTags)))];
     const cards = C.strains.map((s, i) => `
@@ -144,10 +158,13 @@
     const tags = [s.type, s.packSize, s.born && 'Born: ' + s.born].filter(Boolean)
       .map((t, i) => `<span class="tag ${i === 0 ? 'hot' : ''}">${esc(t)}</span>`).join('');
     const stats = STAT_LABELS.filter(([k]) => s.stats?.[k])
-      .map(([k, l], i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 300}ms"><small>${l}</small><strong>${esc(s.stats[k])}</strong></div>`).join('');
+      .map(([k, l], i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 300}ms"><div class="stat-head"><small>${l}</small><span class="stat-icon">${icon(k)}</span></div><strong>${esc(s.stats[k])}</strong></div>`).join('');
     const cultivationInfo = list(s.cultivationInfo).filter(info => info?.label && info?.value)
-      .map((info, i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 120}ms"><small>${esc(info.label)}</small><strong>${esc(info.value)}</strong></div>`).join('');
-    const stamp = s.forecast ? `<div class="forecast reveal"><span class="stamp">Prognose</span><p>${esc(s.forecastNote || 'Werte sind geschätzt.')}</p></div>` : '';
+      .map((info, i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 120}ms"><div class="stat-head"><small>${esc(info.label)}</small><span class="stat-icon">${icon('leaf')}</span></div><strong>${esc(info.value)}</strong></div>`).join('');
+    const stampOptions = s.forecastStamp || {};
+    const stampIcon = Object.prototype.hasOwnProperty.call(ICON_PATHS, stampOptions.icon) ? stampOptions.icon : 'sparkles';
+    const stampTone = ['orange', 'blue', 'green', 'pink', 'ink'].includes(stampOptions.tone) ? stampOptions.tone : 'orange';
+    const stamp = s.forecast ? `<div class="forecast reveal"><span class="stamp stamp--${stampTone}">${icon(stampIcon)}<span>${esc(stampOptions.label || 'Prognose')}</span></span><p>${esc(s.forecastNote || 'Werte sind geschätzt.')}</p></div>` : '';
     const parents = list(s.parents).map((parent, i) => {
       if (typeof parent === 'string') {
         return `<article class="parent-card reveal"><span class="parent-role">Elternteil ${i + 1}</span><strong>${esc(parent)}</strong></article>`;
@@ -168,9 +185,9 @@
       ? `<section class="notes-block"><h3>Hinweise</h3><div class="notes reveal"><p>${esc(s.notes)}</p></div></section>` : '';
     const parentNotes = parentsSection || notesSection
       ? `<div class="parent-notes">${parentsSection}${notesSection}</div>` : '';
-    const chips = (title, arr) => list(arr).length
-      ? `<div class="reveal"><h3>${title}</h3><div class="tags">${arr.map(a => `<span class="tag">${esc(a)}</span>`).join('')}</div></div>` : '';
-    const lists = [chips('Aroma', s.aroma), chips('Wirkung', s.effect)].join('');
+    const chips = (title, arr, iconName) => list(arr).length
+      ? `<div class="reveal"><h3 class="list-heading">${icon(iconName)}<span>${title}</span></h3><div class="tags">${arr.map(a => `<span class="tag">${esc(a)}</span>`).join('')}</div></div>` : '';
+    const lists = [chips('Aroma', s.aroma, 'aroma'), chips('Wirkung', s.effect, 'effect')].join('');
     const gal = list(s.gallery).map(g =>
       `<figure class="reveal" data-src="${esc(g.src)}" data-cap="${esc(g.caption || '')}"><img src="${esc(g.src)}" alt="${esc(g.caption || s.name)}" loading="lazy">${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}</figure>`).join('');
     const pack = s.pack?.back

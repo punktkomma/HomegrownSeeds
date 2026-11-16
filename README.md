@@ -25,6 +25,17 @@ cultivationInfo: [
 Die Beispielwerte sind Platzhalter und sollten pro Sorte angepasst werden. Ohne Einträge wird der
 Bereich „Anbauinfos“ auf der Unterseite nicht angezeigt.
 
+Wenn `forecast` aktiv ist, lässt sich der Stempel pro Sorte anpassen:
+
+```js
+forecastStamp: { label: "Genetik-Prognose", icon: "sparkles", tone: "orange" }
+```
+
+`label` ist der Anzeigetext. Für `icon` stehen `sparkles`, `totalDays`, `generation`, `height`,
+`yield`, `thc`, `cbd`, `aroma`, `effect` und `leaf` zur Verfügung. `tone` kann `orange`, `blue`,
+`green`, `pink` oder `ink` sein. Ohne Angaben verwendet der Stempel „Prognose“ mit Sparkles-Icon
+und Orangeton.
+
 Die Eltern trägst du als getrennte Objekte ein. `breeder` und `fGen` (z. B. `F7`) sind optional:
 
 ```js

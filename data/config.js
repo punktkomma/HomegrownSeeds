@@ -196,33 +196,34 @@ window.CONFIG = {
       type: "Feminisiert & Autoflower",
       born: "Jun 2026",
       packSize: "Samen",
-      status: "Aktuell im Test",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Fruchtig", "Beere", "Haze", "Im Test"],
+      status: "Ungetestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Kush", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "rgb(224, 51, 51)",
       bg: "#79b779",
 
-      description: "Zombii ist eine Kreuzung aus Zombie Kush Auto und Granite Haze. Keine Freaky-Leafs, da Granite Haze keine Mutation. Berry Gelato-Noten von der Mutter, Haze-Charakter von Granite Haze. ",
+      description: "Zombii ist eine Kreuzung aus Zombie Kush Auto und Granite Haze. Die Zombie Kush Mutter ziemlich groß und frostig. Wird selbst in kleinen Töpfen sehr groß unf blüht erst um Tag 40–45.",
 
       /* Eckdaten – null = ausblenden. Aktuell PROGNOSE aus den Eltern, bitte durch echte Werte ersetzen
          und dann forecast auf false stellen. */
       forecast: true,
       forecastNote: "Prognose aus der Genetik (Zombie Kush Auto × Granite Haze). Echte Messwerte folgen nach den Testläufen.",
+      forecastStamp: { label: "Prognose", icon: "sparkles", tone: "orange" },
       stats: {
-        totalDays: "80–90 Tage",
-        generation: "F1",
-        height: "60–140 cm",
+        totalDays: "85–100 Tage",
+        height: "100–140 cm",
         yield: "100–120g / Pflanze",
+        generation: "F1",
       },
 
-      aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
-      effect:  ["Hybrid", "Talking", "Energetisch"],
+      aroma:   ["Haze", "Zitrus", "Lavendel", "Kush"],
+      effect:  ["Hybrid", "Nice", "Energetisch"],
       parents: [
         { role: "Mutter", name: "Zombie Kush Auto", breeder: "Ripper Seeds" },
         { role: "Vater", name: "Granite Haze", breeder: "Speedrun Seeds" }
       ],
-      notes: "Die Sorte ist eine Kreuzung aus Zombie Kush Auto (Zombie Kush Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
+      notes: "Die Sorte ist eine Kreuzung aus Zombie Kush Auto (Zombie Kush Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Blüht erst spät, um Tag 40–45. Verträgt toppen und LST gut.",
       cultivationInfo: [],
 
       pack: {

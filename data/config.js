@@ -105,8 +105,8 @@ window.CONFIG = {
       effect:  ["Klar", "Kreativ", "Hybrid"],
       parents: [
         { role: "Mutter", name: "Sour Stomper", fGen: "F7", breeder: "Mephisto Genetics", lineage: [
-      { name: "GrapeStomper OG [Gage Green Genetics]" },
-      { name: "Sour Crack", fGen: "F5" }
+      { name: "GrapeStomper OG", breeder: "Gage Green Genetics" },
+      { name: "Sour Crack", breeder: "Mephisto Genetics", fGen: "F5" }
     ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
@@ -193,7 +193,10 @@ window.CONFIG = {
       aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
       effect:  ["Hybrid", "Talking", "Energetisch"],
       parents: [
-        { role: "Mutter", name: "Frosty's Auto Freak", breeder: "Khalifa Genetics" },
+        { role: "Mutter", name: "Frosty's Auto Freak", breeder: "Khalifa Genetics", lineage: [
+          { name: "Frosty's Purple Freak", breeder: "Khalifa Genetics" },
+          { name: "Guavalato Auto", breeder: "James Loud Genetics" }
+        ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
       notes: "Die Sorte ist eine Kreuzung aus Frosty's Auto Freak (Fanta Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",

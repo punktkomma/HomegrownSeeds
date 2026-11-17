@@ -73,7 +73,7 @@ window.CONFIG = {
      *     { role: "Mutter", name: "Muttername", phenotype: "Phänotyp" },
      *     { role: "Vater", globalStrain: "graniteHaze" }
      *   ],
-     *   pack: { front: "img/neue-sorte/pack-front.jpg" },
+     *   pack: { front: "img/neue-sorte/pack-front.jpg", back: "img/neue-sorte/pack-back.jpg" },
      *   gallery: [{ src: "img/neue-sorte/plant-1.jpg", caption: "Pflanze" }]
      * }
      * Alle weiteren Felder wie stats, parents, aroma und notes sind optional.
@@ -123,6 +123,49 @@ window.CONFIG = {
       gallery: [
         { src: "img/tulaberry/tb-plant1.jpg", caption: "Tulaberry in der Blüte" },
         { src: "img/tulaberry/tb-plant2.jpg", caption: "Tulaberry Tag 65" }
+      ]
+    },
+    {
+      id: "fob2",
+      name: "Fruit of the Bloom #2",
+      type: "Feminisiert & Autoflower",
+      born: "Jun 2026",
+      packSize: "Samen",
+      status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Frisch", "Fruchtig", "Haze"],
+
+      /* Farben der Detailseite (aus dem Cover) */
+      accent: "#1adae8",
+      bg: "#dfd51c",
+
+      description: "Kreuzung aus Radical Juice Auto und Granite Haze. Kräftiges Wachstum und gute Verzweigung. Die Blüten entwickeln eine ordentliche Dichte und gute Harzproduktion. Terpenprofil: Orange, Limonade, Citrus und ein touch Haze.",
+
+      /* Nur belegte Eckdaten eintragen; nicht vorhandene Werte einfach weglassen. */
+      stats: {
+        totalDays: "80–90 Tage",
+        generation: "F1",
+        height: "60–120 cm",
+        yield: "100–150g / Pflanze",
+      
+      },
+
+      aroma:   ["Fruchtgummi", "Candy", "Fruchtig", "Bubblegum"],
+      effect:  ["Hybrid", "Redetauglich", "Fokusiert", "Kreativ"],
+      parents: [
+        { role: "Mutter", name: "Radical Juice", phenotype: "Runtz Pheno", breeder: "Ripper Seeds", lineage: [
+          { name: "Tropicana Cookies" },
+          { name: "Runtz", },
+          { name: "Ruderalis", }
+        ] },
+        { role: "Vater", globalStrain: "graniteHaze" }
+      ],
+      notes: "Eine sehr wuchskräftige Kreuzung mit breitem Wuchs, kräftigen Seitentrieben und vielen Blütenansätzen. Die Pflanze entwickelt eine große Krone und benötigt entsprechend Platz. Die Blüten sind gut mit Harz überzogen und erreichen eine ordentliche Dichte. Das Terpenprofil ist frisch und deutlich citruslastig, mit Noten von Orange, Limonade und Haze. Verträgt LST und Toppen gut, sollte aber früh um die 5. Nodie getoppt werden.",
+      pack: {
+        front: "img/fob2/fob2-front.jpg",
+        back:  "img/fob2/fob2-plant1.jpg",
+      },
+      gallery: [
+        { src: "img/fob2/fob2-plant1.jpg", caption: "Fruit of the Bloom #2 in der Blüte" }
       ]
     },
      {

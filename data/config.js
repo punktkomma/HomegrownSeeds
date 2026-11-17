@@ -88,8 +88,8 @@ window.CONFIG = {
       filterTags: ["Sour", "Limette", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
-      accent: "#d58626",
-      bg: "#1d8ee4",
+      accent: "#e47f14",
+      bg: "#5f1cdb",
 
       description: "Eine Kreuzung aus Sour Stomper und Granite Haze mit guter Pflanzenstruktur und sehr gutem Ertrag. Die Wuchskraft und Blütendichte liegen etwas unter der Granite Haze, dafür kommen viele Eigenschaften der Sour Stomper durch. Das Terpenprofil ist geprägt von Sour- und Limettennoten mit einer fruchtigen Süße. Dabei deutlich komplexer als ein reines Zitronenaroma.",
 
@@ -132,13 +132,13 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Candy", "Fruchtig", "Haze"],
+      filterTags: ["Frisch", "Fruchtig", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#1ae824",
       bg: "#d354b9",
 
-      description: "Eine Kreuzung aus Radical Juice und Granite Haze mit kräftigem Wachstum und guter Verzweigung. Die Blüten entwickeln eine ordentliche Dichte und eine starke Harzproduktion. Besonders auffällig ist das Terpenprofil: Orange, Limonade, Candy und Haze ergeben eine sehr eigenständige Kombination.",
+      description: "Kreuzung aus Radical Juice Auto und Granite Haze. Kräftiges Wachstum und gute Verzweigung. Die Blüten entwickeln eine ordentliche Dichte und gute Harzproduktion. Terpenprofil: Orange, Limonade, Citrus und ein touch Haze.",
 
       /* Nur belegte Eckdaten eintragen; nicht vorhandene Werte einfach weglassen. */
       stats: {
@@ -149,13 +149,17 @@ window.CONFIG = {
       
       },
 
-      aroma:   ["Candy", "Orange", "Fanta", "Capri-Sonne"],
-      effect:  ["Hybrid", "Talking", "Energetisch"],
+      aroma:   ["Frisch", "Orange", "Fanta", "Capri-Sonne"],
+      effect:  ["Hybrid", "Redetauglich", "Fokusiert", "Kreativ"],
       parents: [
-        { role: "Mutter", name: "Radical Juice Auto", phenotype: "Fanta Pheno", breeder: "Ripper Seeds" },
+        { role: "Mutter", name: "Radical Juice", phenotype: "Fanta Pheno", breeder: "Ripper Seeds", lineage: [
+          { name: "Tropicana Cookies" },
+          { name: "Runtz", },
+          { name: "Ruderalis", }
+        ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
-      notes: "Fruit of the Bloom #3 ist eine Kreuzung aus Radical Juice und Granite Haze. Die Pflanzen zeigen eine ausgeprägte Wuchskraft und entwickeln eine kräftige Struktur mit vielen Seitentrieben und Blütenansätzen. Die Granite Haze bringt dabei ihre typischen Wachstumseigenschaften und einen Teil ihres Haze-Profils mit ein.",
+      notes: "Eine sehr wuchskräftige Kreuzung mit breitem Wuchs, kräftigen Seitentrieben und vielen Blütenansätzen. Die Pflanze entwickelt eine große Krone und benötigt entsprechend Platz. Die Blüten sind gut mit Harz überzogen und erreichen eine ordentliche Dichte. Das Terpenprofil ist frisch und deutlich citruslastig, mit Noten von Orange, Limonade und Haze. Verträgt LST und Toppen gut, sollte aber früh um die 5. Nodie getoppt werden.",
       pack: {
         front: "img/fob3/fob3-front.jpg",
         back:  "img/fob3/fob3-plant4.jpg",
@@ -183,6 +187,9 @@ window.CONFIG = {
       description: "Hidden Berry Freak ist eine Kreuzung aus Frosty's Auto Freak und Granite Haze. Keine Freaky-Leafs, da Granite Haze keine Mutation. Berry Gelato-Noten von der Mutter, Haze-Charakter von Granite Haze. ",
 
       /* Nur belegte Eckdaten eintragen; nicht vorhandene Werte einfach weglassen. */
+      forecast: true,
+      forecastNote: "Prognose zur Kreuzung: Hidden Berry Freak F1. Echte Werte folgen nach den Testläufen.",
+      forecastStamp: { label: "Aktuell im Test", icon: "sparkles", tone: "ink" },
       stats: {
         totalDays: "80–90 Tage",
         generation: "F1",
@@ -190,8 +197,8 @@ window.CONFIG = {
         yield: "100–120g / Pflanze",
       },
 
-      aroma:   ["Sour", "Zitrus", "Fanta", "Capri-Sonne"],
-      effect:  ["Hybrid", "Talking", "Energetisch"],
+      aroma:   ["Berry", "Gelato", "Skunky", "Haze"],
+      effect:  ["Hybrid", "Mehr Sofa", "Stark"],
       parents: [
         { role: "Mutter", name: "Frosty's Auto Freak", breeder: "Khalifa Genetics", lineage: [
           { name: "Frosty's Purple Freak", breeder: "Khalifa Genetics" },
@@ -246,6 +253,46 @@ window.CONFIG = {
 
       pack: {
         front: "img/zii/zii-front.jpg",
+      },
+    }, 
+    {
+      id: "santa",
+      name: "Santas Crisis",
+      type: "Feminisiert & Autoflower",
+      born: "Jun 2026",
+      packSize: "Samen",
+      status: "Vorbereitung",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
+      filterTags: ["Kush", "Haze", "Pfeffer", "Erdig"],
+
+      /* Farben der Detailseite (aus dem Cover) */
+      accent: "rgb(224, 83, 51)",
+      bg: "#0f6639",
+
+      description: "Als Xmas-Special gibt es eine Haze-Psychose. Fugue State, welches eine Amnesia Haze Kreuzung ist, wurde mit Granite Haze vereint. Es ist zu erwarten, dass du unter dem Baum einen harten Film schiebst. Terpenprofil: Pfeffer, Lavendel, Haze.",
+
+      forecast: true,
+      forecastNote: "Prognose aus der Genetik (Fugue State × Granite Haze). Echte Messwerte folgen nach den Testläufen.",
+      forecastStamp: { label: "Prognose", icon: "sparkles", tone: "green" },
+      stats: {
+        totalDays: "75–85 Tage",
+        height: "80–120 cm",
+        yield: "100–150g / Pflanze",
+        generation: "F1",
+      },
+
+      aroma:   ["Haze", "Pfeffer", "Gewürz", "Eukaliptus", "Mint"],
+      effect:  ["Hybrid", "Funktional", "LeichtEnergetisch"],
+      parents: [
+        { role: "Mutter", name: "Fugue State", breeder: "Mephisto Genetics", fGen: "F6", lineage: [
+          { name: "Amnesia Haze", fGen: "BX1", breeder: "Archive Seeds" },
+          { name: "Walter White", fGen: "F5", breeder: "Mephisto Genetics" }
+        ] },
+        { role: "Vater", globalStrain: "graniteHaze" }
+      ],
+      notes: "Als Xmas-Special gibt es eine Haze-Psychose. Fugue State, welches eine Amnesia Haze Kreuzung ist, wurde mit Granite Haze vereint. Es ist zu erwarten, dass du unter dem Baum einen harten Film schiebst. Terpenprofil: Pfeffer, Lavendel, Haze.",
+
+      pack: {
+        front: "img/santa/santa-front.jpg",
       },
     }
   ]

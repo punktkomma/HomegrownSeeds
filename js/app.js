@@ -2,6 +2,23 @@
   const C = window.CONFIG, S = C.site, app = document.getElementById('app');
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const list = a => (a || []).filter(Boolean);
+  const resolveParent = parent => {
+    if (typeof parent === 'string') return { name: parent };
+    if (!parent || typeof parent !== 'object') return {};
+    const shared = parent.globalStrain ? C.globalStrains?.[parent.globalStrain] : null;
+    if (parent.globalStrain && !shared) throw new Error(`Unbekannter globaler Strain: ${parent.globalStrain}`);
+    return { ...shared, ...parent, name: parent.name || shared?.name };
+  };
+  const parentsFor = strain => list(strain.parents).map(resolveParent).filter(parent => parent.name);
+  const geneticsFor = strain => {
+    const parents = parentsFor(strain).map(parent =>
+      parent.phenotype ? `${parent.name} *${parent.phenotype}*` : parent.name
+    );
+    return parents.length ? parents : list(strain.genetics);
+  };
+  const about = typeof S.about === 'string' ? { intro: S.about } : (S.about || {});
+  const aboutTopics = list(about.topics).filter(topic => topic?.title && topic?.text);
+  const hasAbout = Boolean(about.intro || aboutTopics.length);
 
   // Theme + Kopfbereich
   for (const [k, v] of Object.entries(C.theme || {})) document.documentElement.style.setProperty('--' + k, v);
@@ -85,6 +102,14 @@
 
   function home() {
     const filterTags = [...new Set(C.strains.flatMap(s => list(s.filterTags)))];
+    const aboutSection = hasAbout ? `
+      <section class="about" id="about"><div class="section">
+        <h2>${esc(about.title || 'Infos')}</h2>
+        ${about.intro ? `<p class="about-intro">${esc(about.intro)}</p>` : ''}
+        ${aboutTopics.length ? `<div class="about-grid">${aboutTopics.map(topic => `
+          <article class="about-topic"><h3>${esc(topic.title)}</h3><p>${esc(topic.text)}</p></article>
+        `).join('')}</div>` : ''}
+      </div></section>` : '';
     const cards = C.strains.map((s, i) => {
       const coverImage = s.cover || s.pack?.front || '';
       const plantImage = s.cardPlantImage || list(s.gallery)[0]?.src || '';
@@ -94,7 +119,7 @@
       <a class="card reveal strain-card" data-filter-tags="${esc(list(s.filterTags).map(tag => tag.toLocaleLowerCase('de')).join('|'))}" style="--d:${i*90}ms;--c-bg:${esc(s.bg || '')}" href="#/strain/${esc(s.id)}">
         ${s.status ? `<span class="badge">${esc(s.status)}</span>` : ''}
         <img class="strain-image" src="${esc(coverImage)}" data-cover="${esc(coverImage)}" data-plant="${esc(plantImage)}" data-cover-alt="${esc(coverAlt)}" data-plant-alt="${esc(plantAlt)}" alt="${esc(coverAlt)}" loading="lazy">
-        <div class="meta"><h3>${esc(s.name)}</h3><div class="gen">${list(s.genetics).map(esc).join(' × ')}</div></div>
+        <div class="meta"><h3>${esc(s.name)}</h3><div class="gen">${geneticsFor(s).map(esc).join(' × ')}</div></div>
       </a>`;
     }).join('');
     const soon = S.showComingSoon ? `<div class="card soon reveal">${esc(S.comingSoonText || 'Bald mehr')}</div>` : '';
@@ -122,7 +147,7 @@
         <div class="grid" id="strainGrid">${cards}${soon}</div>
         <p class="empty-state" id="noStrains" hidden>Keine Sorten in diesem Filter. Wähle einen anderen Filter.</p>
       </section>
-      ${S.about ? `<section class="about" id="about"><div class="section"><h2>Zu Robin's Homegrown</h2><p>${esc(S.about)}</p></div></section>` : ''}`;
+      ${aboutSection}`;
     document.documentElement.style.setProperty('--bg', 'var(--yellow)');
 
     const filterButtons = [...app.querySelectorAll('.filter-chip')];
@@ -190,6 +215,7 @@
 
     const tags = [s.type, s.packSize, s.born && 'Born: ' + s.born].filter(Boolean)
       .map((t, i) => `<span class="tag ${i === 0 ? 'hot' : ''}">${esc(t)}</span>`).join('');
+    const genetics = geneticsFor(s);
     const stats = STAT_LABELS.filter(([k]) => s.stats?.[k])
       .map(([k, l], i) => `<div class="stat reveal s${i % 5}" style="--d:${i * 300}ms"><div class="stat-head"><small>${l}</small><span class="stat-icon">${icon(k)}</span></div><strong>${esc(s.stats[k])}</strong></div>`).join('');
     const cultivationInfo = list(s.cultivationInfo).filter(info => info?.label && info?.value)
@@ -198,17 +224,14 @@
     const stampIcon = Object.prototype.hasOwnProperty.call(ICON_PATHS, stampOptions.icon) ? stampOptions.icon : 'sparkles';
     const stampTone = ['orange', 'blue', 'green', 'pink', 'ink'].includes(stampOptions.tone) ? stampOptions.tone : 'orange';
     const stamp = s.forecast ? `<div class="forecast reveal"><span class="stamp stamp--${stampTone}">${icon(stampIcon)}<span>${esc(stampOptions.label || 'Prognose')}</span></span><p>${esc(s.forecastNote || 'Werte sind geschätzt.')}</p></div>` : '';
-    const parents = list(s.parents).map((parent, i) => {
-      if (typeof parent === 'string') {
-        return `<article class="parent-card reveal"><span class="parent-role">Elternteil ${i + 1}</span><strong>${esc(parent)}</strong></article>`;
-      }
-      if (!parent?.name) return '';
+    const parents = parentsFor(s).map((parent, i) => {
       return `<article class="parent-card reveal">
         <div class="parent-topline">
           <span class="parent-role">${esc(parent.role || `Elternteil ${i + 1}`)}</span>
           ${parent.fGen ? `<span class="parent-generation">${esc(parent.fGen)}</span>` : ''}
         </div>
         <strong>${esc(parent.name)}</strong>
+        ${parent.phenotype ? `<span class="parent-phenotype">Phänotyp: ${esc(parent.phenotype)}</span>` : ''}
         ${parent.breeder ? `<span class="parent-breeder">Züchter: ${esc(parent.breeder)}</span>` : ''}
       </article>`;
     }).join('');
@@ -223,13 +246,14 @@
     const lists = [chips('Aroma', s.aroma, 'aroma'), chips('Wirkung', s.effect, 'effect')].join('');
     const gal = list(s.gallery).map(g =>
       `<figure class="reveal" data-src="${esc(g.src)}" data-cap="${esc(g.caption || '')}"><img src="${esc(g.src)}" alt="${esc(g.caption || s.name)}" loading="lazy">${g.caption ? `<figcaption>${esc(g.caption)}</figcaption>` : ''}</figure>`).join('');
-    const lineageBranches = list(s.parents).map(parent => {
-      if (!parent || typeof parent !== 'object' || !parent.name) return '';
+    const lineageBranches = parentsFor(s).map(parent => {
       const ancestors = list(parent.lineage).map(item => {
         const name = typeof item === 'string' ? item : item?.name;
         if (!name) return '';
         const fGen = typeof item === 'string' ? '' : item.fGen;
-        return `<li><span>${esc(name)}</span>${fGen ? `<small>${esc(fGen)}</small>` : ''}</li>`;
+        const phenotype = typeof item === 'string' ? '' : item.phenotype;
+        const breeder = typeof item === 'string' ? '' : item.breeder;
+        return `<li><span>${esc(name)}${phenotype ? `<em class="lineage-phenotype">Phänotyp: ${esc(phenotype)}</em>` : ''}${breeder ? `<em class="lineage-breeder">Züchter: ${esc(breeder)}</em>` : ''}</span>${fGen ? `<small>${esc(fGen)}</small>` : ''}</li>`;
       }).join('');
       if (!ancestors) return '';
       return `<article class="lineage-branch reveal">
@@ -238,6 +262,7 @@
           ${parent.fGen ? `<span class="lineage-fgen">${esc(parent.fGen)}</span>` : ''}
         </div>
         <strong class="lineage-root">${esc(parent.name)}</strong>
+        ${parent.breeder ? `<span class="lineage-breeder">Züchter: ${esc(parent.breeder)}</span>` : ''}
         <ul class="lineage-ancestors">${ancestors}</ul>
       </article>`;
     }).join('');
@@ -259,7 +284,7 @@
           <div class="pack-view">${pack}</div>
           <div class="dinfo">
             <h1>${esc(s.name)}</h1>
-            ${list(s.genetics).length ? `<div class="cross">${s.genetics.map(g => `<b>${esc(g)}</b>`).join('<i>×</i>')}</div>` : ''}
+            ${genetics.length ? `<div class="cross">${genetics.map(g => `<b>${esc(g)}</b>`).join('<i>×</i>')}</div>` : ''}
             <div class="tags">${tags}</div>
             ${s.description ? `<p class="desc">${esc(s.description)}</p>` : ''}
           </div>
@@ -297,7 +322,7 @@
       t ? t.scrollIntoView() : scrollTo(0, 0);
     }
     observe();
-    document.getElementById('aboutLink').style.display = S.about ? '' : 'none';
+    document.getElementById('aboutLink').style.display = hasAbout ? '' : 'none';
   }
   addEventListener('hashchange', route);
   route();

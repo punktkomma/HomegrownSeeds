@@ -128,7 +128,11 @@ main{flex:1}
 .card.soon{box-shadow:none;border-style:dashed;background:transparent;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:var(--space-6);font:1.5rem var(--display);text-transform:uppercase;opacity:.55}
 .card.soon:hover{transform:none;box-shadow:none}
 .about{background:var(--paper);color:var(--ink);border-block:var(--bd)}
-.about p{font-size:1.45rem;max-width:42ch}
+.about-intro{font-size:1.45rem;max-width:60ch}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--space-4);margin-top:var(--space-6)}
+.about-topic{padding:var(--space-4);border:var(--bd);background:#fff;box-shadow:4px 4px 0 var(--ink)}
+.about-topic h3{font:1.35rem/1.1 var(--display);text-transform:uppercase;margin-bottom:var(--space-2)}
+.about-topic p{font-size:1.1rem;max-width:42ch}
 
 /* Detail */
 .detail{background:var(--bg);border-bottom:var(--bd);min-height:70vh}
@@ -178,6 +182,7 @@ main{flex:1}
 .parent-role{display:inline-block;padding:var(--space-1) var(--space-2);background:var(--accent);color:#fff;font:700 .75rem var(--body);letter-spacing:.08em;text-transform:uppercase}
 .parent-generation{border:1px solid var(--ink);padding:0 var(--space-2);font:700 .75rem var(--body);line-height:1.4}
 .parent-card strong{font:clamp(1.15rem,2.5vw,1.4rem)/1.05 var(--display);text-transform:uppercase;overflow-wrap:anywhere}
+.parent-phenotype{font:600 .95rem/1.25 var(--body)}
 .parent-breeder{font:600 .9rem var(--body);opacity:.75}
 .notes{margin-top:var(--space-7);max-width:60ch;background:var(--paper);border:var(--bd);box-shadow:var(--shadow);padding:var(--space-4) var(--space-5)}
 .notes h3{font:1.3rem var(--display);text-transform:uppercase;margin-bottom:.5rem}
@@ -202,6 +207,8 @@ main{flex:1}
 .lineage-root{display:block;font:1.45rem/1.1 var(--display);text-transform:uppercase;overflow-wrap:anywhere}
 .lineage-ancestors{display:grid;gap:var(--space-2);margin:var(--space-3) 0 0 var(--space-2);padding:0 0 0 var(--space-4);border-left:2px solid var(--accent);list-style:none}
 .lineage-ancestors li{position:relative;display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:#fff;border:1px solid var(--ink);box-shadow:2px 2px 0 var(--ink);font:600 1rem/1.2 var(--body)}
+.lineage-phenotype{display:block;font:500 .85rem/1.2 var(--body);font-style:normal;opacity:.75}
+.lineage-breeder{display:block;font:500 .85rem/1.2 var(--body);font-style:normal;opacity:.75}
 .lineage-ancestors li::before{content:"";position:absolute;left:calc(-1 * var(--space-4));top:50%;width:var(--space-3);border-top:1px solid var(--accent)}
 .lineage-ancestors small{flex:none;padding:0 var(--space-1);border:1px solid var(--ink);font:700 .75rem var(--body)}
 

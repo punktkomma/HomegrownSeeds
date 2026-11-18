@@ -9,15 +9,15 @@ window.CONFIG = {
 
   site: {
     name: "Robin's Homegrown",
-    tagline: "Übersicht der Kreuzungen",
+    tagline: "Übersicht der Autoflower-Kreuzungen.",
     logo: "img/logo.png",
     about: {
       title: "Info",
       intro: "Ein Überblick über die Kreuzungen, ihre Entwicklung und die vorhandenen Anbauinfos.",
       topics: [
-        { title: "Genetik", text: "Eltern und Generationen der Kreuzungen – soweit bekannt." },
-        { title: "Eckdaten", text: "Wuchs, Zeit und Ertrag. Prognosen sind als solche gekennzeichnet." },
-        { title: "Anbau & Beobachtungen", text: "Aroma, Wirkung und Anbauinfos – sofern Angaben zur Sorte vorliegen." }
+        { title: "Genetik", text: "Informationen zu den Samen zum Nachlesen" },
+        { title: "Autoflower", text: "Aktuell nur Autoflower und Feminisiert" },
+        { title: "Anbau & Beobachtungen", text: "Aroma, Wirkung und Anbauinfos." }
       ]
     },
     showComingSoon: true,                  // Platzhalter-Karte „bald mehr“
@@ -57,8 +57,8 @@ window.CONFIG = {
       fGen: "F7",
       breeder: "Speedrun Seeds",
       lineage: [
-        { name: "Bear’s Breath " },
-        { name: "Hubba Bubba Smelloscope x No-name Haze" }
+        { name: "Bear’s Breath ", breeder: "Dream Beans" },
+        { name: "Hubba Bubba Smelloscope x No-name Haze", breeder: "Speedrun Seeds" }
       ]
     }
   },
@@ -85,13 +85,13 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Sour", "Limette", "Haze"],
+      filterTags: ["Sour", "Limette", "Haze", "Fruchtig"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#e47f14",
       bg: "#5f1cdb",
 
-      description: "Eine Kreuzung aus Sour Stomper und Granite Haze mit guter Pflanzenstruktur und sehr gutem Ertrag. Die Wuchskraft und Blütendichte liegen etwas unter der Granite Haze, dafür kommen viele Eigenschaften der Sour Stomper durch. Das Terpenprofil ist geprägt von Sour- und Limettennoten mit einer fruchtigen Süße. Dabei deutlich komplexer als ein reines Zitronenaroma.",
+      description: "Eine Kreuzung aus Sour Stomper und Granite Haze mit sehr guter Struktur und recht photoperiodisch wirkenden Blüten. Die Wuchskraft und Blütendichte liegen etwas unter der Granite Haze, dafür kommen positive Eigenschaften der Sour Stomper durch. Das Terpenprofil ist geprägt von Sour- und Limettennoten, tendenziell eher fruchtig als süß.",
 
       /* Nur belegte Eckdaten eintragen; nicht vorhandene Werte einfach weglassen. */
       stats: {
@@ -110,7 +110,7 @@ window.CONFIG = {
     ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
-      notes: "Der Ertrag war sehr gut und auch optisch hat mich die Pflanze überzeugt. Besonders interessant ist allerdings das Terpenprofil. Dominant sind Sour- und Limettennoten, begleitet von einer fruchtigen Süße. Das Ganze erinnert nicht einfach an Zitrone, sondern hat eine deutlich komplexere und eigenständigere Richtung. Insgesamt eine Kreuzung, mit deren Ergebnis ich sehr zufrieden bin. Vor allem die Kombination aus Pflanzenstruktur, Ertrag und Geschmack macht sie für mich interessant.",
+      notes: "Sehr schöne Pflanze die bei allen Testläufen recht einheitliche Ergebnisse bezogen auf Geschmack, Struktur und Wirkung geliefert hat. Die Blüten sind sehr kompakt, die Pflanze wächst eher photoperiodisch und reagiert empfindlich auf Stickstoff. Das Terpenprofil ist fruchtig-sauer mit Limettennoten, nicht zu süß. Die Wirkung ist klar, kreativ und hybrid.",
       cultivationInfo: [
         { label: "Düngerempfindlichkeit", value: "reagiert empfindlich auf Stickstoff, blautönung als Warnsignal" }, 
         { label: "EC-Empfehlungen", value: "Moderate EC-Werte empfohlen. Zwischen 1.6 und 2.2 mS/cm" }, 
@@ -122,7 +122,9 @@ window.CONFIG = {
       },
       gallery: [
         { src: "img/tulaberry/tb-plant1.jpg", caption: "Tulaberry in der Blüte" },
-        { src: "img/tulaberry/tb-plant2.jpg", caption: "Tulaberry Tag 65" }
+        { src: "img/tulaberry/tb-plant2.jpg", caption: "Tulaberry in der Blüte" },
+        { src: "img/tulaberry/tb-plant3.jpg", caption: "Tulaberry in der Blüte" },
+        { src: "img/tulaberry/tb-plant4.jpg", caption: "Tulaberry dry Bud" },
       ]
     },
     {
@@ -132,7 +134,7 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Frisch", "Fruchtig", "Haze"],
+      filterTags: ["Candy", "Fruchtig", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#1adae8",
@@ -175,7 +177,7 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Getestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Frisch", "Fruchtig", "Haze"],
+      filterTags: ["Sour", "Fruchtig", "Haze"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "#1ae824",
@@ -221,13 +223,13 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Aktuell im Test",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Gelato", "Beere", "Haze", "Fruchtig"],
+      filterTags: ["Skunky", "Beere", "Haze", "Fruchtig"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "rgb(63, 224, 51)",
       bg: "#cc33e0",
 
-      description: "Hidden Berry Freak ist eine Kreuzung aus Frosty's Auto Freak und Granite Haze. Keine Freaky-Leafs, da Granite Haze keine Mutation. Berry Gelato-Noten von der Mutter, Haze-Charakter von Granite Haze. ",
+      description: "Hidden Berry Freak ist eine Kreuzung aus Frosty's Auto Freak und Granite Haze. Keine Freaky-Leafs, da Granite Haze keine Mutation. Berry Gelato-Noten von der Mutter, Sour-fruity Haze von Granite Haze. ",
 
       /* Nur belegte Eckdaten eintragen; nicht vorhandene Werte einfach weglassen. */
       forecast: true,
@@ -249,7 +251,7 @@ window.CONFIG = {
         ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
-      notes: "Die Sorte ist eine Kreuzung aus Frosty's Auto Freak (Fanta Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Verträgt toppen und LST gut.",
+      notes: "Die Sorte ist eine Kreuzung aus Frosty's Auto Freak und Granite Haze. Sie wächst sehr kräftig, verzweigt schon früh und alle Triebe kommen ohne Training auf die selbe höhe. Verträgt Nährstoffe und Licht gut. Starke Wurzelbildung. Die Frosty Mutter wurde selbst bei extremen Temperaturen weit über 30°C komplett lila bis schwarz. Die Sorte ist aktuell im Testlauf.",
       pack: {
         front: "img/hbf/hbf-front.jpg",
         back:  "img/hbf/hbf-plant1.jpg",
@@ -267,13 +269,13 @@ window.CONFIG = {
       born: "Jun 2026",
       packSize: "Samen",
       status: "Ungetestet",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Kush", "Haze", "Pfeffer", "Erdig"],
+      filterTags: ["Kush", "Haze", "Pfeffer"],
 
       /* Farben der Detailseite (aus dem Cover) */
       accent: "rgb(224, 51, 51)",
       bg: "#79b779",
 
-      description: "Zombii ist eine Kreuzung aus Zombie Kush Auto und Granite Haze. Die Zombie Kush Mutter ziemlich groß und frostig. Wird selbst in kleinen Töpfen sehr groß unf blüht erst um Tag 40–45.",
+      description: "Zombii ist eine Kreuzung aus Zombie Kush Auto und Granite Haze. Die Zombie Kush Mutter ziemlich groß und frostig. Wird selbst in kleinen Töpfen sehr groß und blüht erst um Tag 40–45.",
 
       forecast: true,
       forecastNote: "Prognose aus der Genetik (Zombie Kush Auto × Granite Haze). Echte Messwerte folgen nach den Testläufen.",
@@ -288,43 +290,47 @@ window.CONFIG = {
       aroma:   ["Haze", "Sweet", "Lavendel", "Kush"],
       effect:  ["Hybrid", "Funktional", "LeichtEnergetisch"],
       parents: [
-        { role: "Mutter", name: "Zombie Kush Auto", breeder: "Ripper Seeds" },
+        { role: "Mutter", name: "Zombie Kush Auto", breeder: "Ripper Seeds", lineage: [
+          { name: "Sideral", breeder: "Ripper Seeds" },
+          { name: "Bubba Kush" },
+          { name: "Ruderalis" }
+        ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
-      notes: "Die Sorte ist eine Kreuzung aus Zombie Kush Auto (Zombie Kush Pheno) und Granite Haze. Sie hat einen ausufernden Wuchs, dichte Blüten und ein fruchtiges Aroma. Braucht Platz aber wird sehr harzig. Blüht erst spät, um Tag 40–45. Verträgt toppen und LST gut.",
+      notes: "Die Zombie Kush Mutter war ziemlich groß und blüht erst um Tag 40–45. Granite Haze Vater typisch Wuchstark und Haze Fruity Sour Mint Aroma. Die Sorte ist aktuell ungetestet. Sollte ideal für Outdoor geeignet sein, da sie sehr groß wird und erst spät in die Blüte geht.",
       cultivationInfo: [{ label: "Veg → Blüte", value: "Später Blütestart. Tag 40-45" }, ],
 
       pack: {
         front: "img/zii/zii-front.jpg",
       },
     }, 
-    {
+   /* {
       id: "santa",
       name: "Santas Crisis",
       type: "Feminisiert & Autoflower",
       born: "Jun 2026",
       packSize: "Samen",
       status: "Vorbereitung",                 // frei wählbar: z. B. "Testphase", "Ausverkauft"
-      filterTags: ["Kush", "Haze", "Pfeffer", "Erdig"],
+      filterTags: ["Kush", "Haze", "Pfeffer"],
 
-      /* Farben der Detailseite (aus dem Cover) */
+    
       accent: "rgb(224, 83, 51)",
       bg: "#0f6639",
 
-      description: "Als Xmas-Special gibt es eine Haze-Psychose. Fugue State, welches eine Amnesia Haze Kreuzung ist, wurde mit Granite Haze vereint. Es ist zu erwarten, dass du unter dem Baum einen harten Film schiebst. Terpenprofil: Pfeffer, Lavendel, Haze.",
+      description: "Als Xmas-Special gibt es eine Haze-Psychose. Fugue State, welches eine Amnesia Haze Kreuzung ist, wurde mit Granite Haze vereint. Es ist zu erwarten, dass du unter dem Baum einen harten Film schiebst. Terpenprofil: Pfeffer, Gewürz, Pinie, Haze.",
 
       forecast: true,
       forecastNote: "Prognose aus der Genetik (Fugue State × Granite Haze). Echte Messwerte folgen nach den Testläufen.",
-      forecastStamp: { label: "Prognose", icon: "sparkles", tone: "green" },
+      forecastStamp: { label: "Im Test", icon: "thc", tone: "green" },
       stats: {
         totalDays: "75–85 Tage",
         height: "80–120 cm",
-        yield: "100–150g / Pflanze",
+        yield: "80–150g / Pflanze",
         generation: "F1",
       },
 
-      aroma:   ["Haze", "Pfeffer", "Gewürz", "Eukaliptus", "Mint"],
-      effect:  ["Hybrid", "Funktional", "LeichtEnergetisch"],
+      aroma:   ["Haze", "Pfeffer", "Gewürz", "Minty"],
+      effect:  ["Hybrid", "Jingle Bells", "Xmas Haze Psychose"],
       parents: [
         { role: "Mutter", name: "Fugue State", breeder: "Mephisto Genetics", fGen: "F6", lineage: [
           { name: "Amnesia Haze", fGen: "BX1", breeder: "Archive Seeds" },
@@ -332,11 +338,11 @@ window.CONFIG = {
         ] },
         { role: "Vater", globalStrain: "graniteHaze" }
       ],
-      notes: "Als Xmas-Special gibt es eine Haze-Psychose. Fugue State, welches eine Amnesia Haze Kreuzung ist, wurde mit Granite Haze vereint. Es ist zu erwarten, dass du unter dem Baum einen harten Film schiebst. Terpenprofil: Pfeffer, Lavendel, Haze.",
+      notes: "Als Xmas-Special gibt es eine Haze-Psychose. Fugue State, welches eine Amnesia Haze Kreuzung ist, wurde mit Granite Haze vereint. Es ist zu erwarten, dass du unter dem Baum einen harten Film schiebst. Terpenprofil: Pfeffer, Gewürz, Pinie, Haze.",
 
       pack: {
         front: "img/santa/santa-front.jpg",
       },
-    }
+    } */
   ]
 };

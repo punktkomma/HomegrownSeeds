@@ -1,5 +1,13 @@
 # HomegrownSeeds
 
+HomegrownSeeds ist ein einfach zu konfigurierendes Template zur strukturierten Dokumentation und Präsentation eigener Sammlungen und Genetiken. Die Vorlage lässt sich unkompliziert an die eigenen Bedürfnisse anpassen und bietet verschiedene Möglichkeiten, Informationen zu Strains, Abstammung, Breeder und Generationen übersichtlich darzustellen.
+
+Enthaltene Beispieldaten veranschaulichen den Aufbau und die einzelnen Funktionen des Templates und erleichtern die Anpassung und Pflege eigener Einträge.
+
+Viel Erfolg bei der Dokumentation und Präsentation eurer Sammlungen und natürlich mit euren Samen!
+
+## Wie zu nutzen?
+
 Statische Seite, kein Build, kein Server nötig. `index.html` öffnen oder den Ordner hochladen
 (Netlify Drop, GitHub Pages, eigener Webspace).
 

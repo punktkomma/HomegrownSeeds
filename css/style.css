@@ -108,7 +108,7 @@ main{flex:1}
 .strain-controls{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);width:100%;flex-wrap:wrap}
 .filter-chip:focus-visible,.image-chip:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .filter-options{display:flex;flex-wrap:wrap;gap:var(--space-1)}
-.filter-chip{border:var(--bd);border-radius:999px;background:var(--paper);padding:var(--space-1) var(--space-3);font:700 .95rem var(--body);cursor:pointer;transition:transform .18s,background .18s,color .18s,box-shadow .18s}
+.filter-chip{border:var(--bd);border-radius:999px;background:var(--paper);padding:var(--space-1) var(--space-3);font:700 .95rem var(--body);cursor:pointer;transition:transform .18s,background .18s,color .18s,box-shadow .18s; color:var(--ink)}
 .filter-chip:hover{transform:translateY(-2px) rotate(-2deg);box-shadow:2px 3px 0 var(--ink)}
 .filter-chip.is-active{background:var(--ink);color:var(--paper);box-shadow:2px 3px 0 var(--orange)}
 .image-options{display:flex;gap:var(--space-1);padding:var(--space-1);border:var(--bd);border-radius:999px;background:var(--paper);box-shadow:2px 2px 0 var(--ink)}
